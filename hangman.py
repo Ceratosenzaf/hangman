@@ -8,6 +8,8 @@ alphabet = list(string.ascii_uppercase)
 available_letters = list(string.ascii_uppercase)
 used_letters = []
 
+max_strikes = 7
+
 
 def hangman(word_list, out_word):
     # pick a word
@@ -39,7 +41,7 @@ def hangman(word_list, out_word):
         else:
             print("It was wrong")
             strikes += 1
-            if strikes == 5:
+            if strikes == max_strikes:
                 print("You failed :( The word was " + word)
                 game_over = True
 
@@ -51,7 +53,7 @@ def get_letter(out_word, strike_num):
         print(letter, end=" ")
     print("\nUsed letters are:", *used_letters, end=" ")
     print("\nAvailable letters are: ", *available_letters, end=" ")
-    print("\nYou have other " + str(5 - strike_num) + " strikes left")
+    print("\nYou have other " + str(max_strikes - strike_num) + " strikes left")
     user_input = input("\nGuess a letter\t").upper()
     print("")
     if user_input in used_letters:
